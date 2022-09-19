@@ -11,33 +11,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
@@ -90,13 +63,13 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="index.php" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
-            </a>
+            </a> -->
           <li class="nav-item">
             <a href="daftar_buku.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -107,7 +80,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/forms/general.html" class="nav-link">
+            <a href="upload_data.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 UPLOAD DATA
@@ -148,33 +121,41 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-12">
-                  <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <!-- <div class="col-12"> -->
+                  <div class="card-body" col="10">
+                <table id="daftarbuku" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>NO.</th>
-                      <th>TANGGAL</th>
-                      <th>NAMA BUKU</th>
-                      <th>KETERANGAN</th>
+                      <th><center>JUDUL</center></th>
+                      <th><center>KETERANGAN</center></th>
+                      <th><center>FILE</center></th>
+                      <th><center>ACTION</center></th>
                     </tr>
               </thead>
               <tbody>
-            <?php
-                $no=1;
+              <?php
                 $ambildata  = (mysqli_query($con,"SELECT * FROM tb_perpustakaan"));
                 while($data=mysqli_fetch_array($ambildata)){
-                    $no++;
-                    $tanggal        = $data['tanggal'];
-                    $nama_buku      = $data['nama_buku'];
-                    $keterangan     = $data['keterangan'];
-                
-            ?>
+                ?>
             <tr>
-                <td></td>
-                <td><?=$tanggal;?></td>
-                <td><?=$nama_buku;?></td>
-                <td><?=$keterangan;?></td>
+                <td><center><?=$data['nama_buku']?></center></td>
+                <td><center><?=$data['keterangan']?></center></td>
+                <td><center><?=$data['file']?></center></td>
+                <td>
+                    <?php
+                      $query  = "SELECT * FROM tb_perpustakaan";
+                      $run    = mysqli_query($con,$query);
+
+                      while($rows = mysqli_fetch_assoc($run)) {
+                    ?>
+                  <a href="download.php?file=<?php echo $rows['file'] ?>"><i class="fa fa-download" aria-hidden="true"></i></a>
+                  <a href="detail.php?id_perpustakaan=<?=$rows['id_perpustakaan']?>"> <i class="fa fa-eye" aria-hidden="true" aria-hidden="true"></i></a>
+                  <a href="edit.php?id_perpustakaan=<?=$rows['id_perpustakaan']?>"> edit</a>
+                  <a href="hapus.php"? onClick="return confirm(\'Apakah anda yakin ingin hapus?\')id_perpustakaan=<?=$rows['id_perpustakaan']?>"> hapus</a>
+                  <?php
+                      };
+                    ?>
+                </td>
             </tr>
             <?php
         };
@@ -187,20 +168,10 @@
   </section>
 </div>
   <!--  -->
-
-
 <script>
-  $(function () {
-    $(document).ready(function(){
-    $('#example2').DataTable();
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
+  $(document).ready(function () {
+    $('#daftarbuku').DataTable();
+});
 </script>
 </body>
 </html>
