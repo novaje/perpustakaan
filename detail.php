@@ -1,6 +1,6 @@
 <?php
     //ambil id
-    $id_perpustakaan = $_GET['id_perpustakaan'];
+    $kode_buku = $_GET['kode_buku'];
 
     // echo $id_perpustakaan;
 
@@ -19,7 +19,7 @@
     }
 
     //query
-    $query  = "SELECT * FROM tb_perpustakaan WHERE id_perpustakaan='$id_perpustakaan'";
+    $query  = "SELECT * FROM tb_perpustakaan WHERE kode_buku='$kode_buku'";
     //hasil
     $hasil  = $con->query($query);
 
@@ -32,6 +32,7 @@
                 <table border = "1" id="daftarbuku" class="table table-bordered table-hover">
                   <thead>
                     <tr>
+                      <th><center>KODE BUKU</center></th>
                       <th><center>JUDUL</center></th>
                       <th><center>KETERANGAN</center></th>
                       <th><center>FILE</center></th>
@@ -39,10 +40,11 @@
               </thead>
               <tbody>
               <?php
-                $ambildata  = (mysqli_query($con,"SELECT * FROM tb_perpustakaan"));
+                $ambildata  = (mysqli_query($con,"SELECT * FROM tb_perpustakaan WHERE kode_buku='$kode_buku'"));
                 while($data=mysqli_fetch_array($ambildata)){
                 ?>
             <tr>
+                <td><center><?=$data['kode_buku']?></center></td>
                 <td><center><?=$data['nama_buku']?></center></td>
                 <td><center><?=$data['keterangan']?></center></td>
                 <td><center><?=$data['file']?></center></td>

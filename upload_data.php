@@ -134,6 +134,8 @@ if(isset($_POST["submit"])){
                             </div>
                         </div>
                         <form action="" method="POST" enctype="multipart/form-data">
+                            <b>Kode Buku:</b>
+                            <input type="text" name="kode_buku" value="" placeholder=""><br /><br />
                             <b>Judul Buku:</b>
                             <input type="text" name="nama_buku" value="" placeholder=""><br /><br />
                             <b>Keterangan:</b>
@@ -147,13 +149,14 @@ if(isset($_POST["submit"])){
 
                             if(isset($_POST['proses'])) {
 
+                                $kode_buku   = $_POST['kode_buku'];
                                 $nama_buku   = $_POST['nama_buku'];
                                 $keterangan  = $_POST['keterangan'];
                                 $directory   = "berkas/";
                                 $file_name   = $_FILES['namaFile']['name'];
                                 move_uploaded_file($_FILES['namaFile']['tmp_name'], $directory.$file_name);
 
-                                mysqli_query($con, "INSERT INTO tb_perpustakaan SET file='$file_name', nama_buku='$nama_buku', keterangan='$keterangan'");
+                                mysqli_query($con, "INSERT INTO tb_perpustakaan SET file='$file_name', nama_buku='$nama_buku', keterangan='$keterangan', kode_buku='$kode_buku'");
 
                                 echo "<b> File Berhasil Upload";
                             }

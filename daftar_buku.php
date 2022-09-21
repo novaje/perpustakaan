@@ -126,6 +126,7 @@
                 <table id="daftarbuku" class="table table-bordered table-hover">
                   <thead>
                     <tr>
+                      <th><center>KODE BUKU</center></th>
                       <th><center>JUDUL</center></th>
                       <th><center>KETERANGAN</center></th>
                       <th><center>FILE</center></th>
@@ -138,23 +139,18 @@
                 while($data=mysqli_fetch_array($ambildata)){
                 ?>
             <tr>
+                <td><center><?=$data['kode_buku']?></center></td>
                 <td><center><?=$data['nama_buku']?></center></td>
                 <td><center><?=$data['keterangan']?></center></td>
                 <td><center><?=$data['file']?></center></td>
                 <td>
-                    <?php
-                      $query  = "SELECT * FROM tb_perpustakaan";
-                      $run    = mysqli_query($con,$query);
-
-                      while($rows = mysqli_fetch_assoc($run)) {
-                    ?>
-                  <a href="download.php?file=<?php echo $rows['file'] ?>"><i class="fa fa-download" aria-hidden="true"></i></a>
-                  <a href="detail.php?id_perpustakaan=<?=$rows['id_perpustakaan']?>"> <i class="fa fa-eye" aria-hidden="true" aria-hidden="true"></i></a>
-                  <a href="edit.php?id_perpustakaan=<?=$rows['id_perpustakaan']?>"> edit</a>
-                  <a href="hapus.php"? onClick="return confirm(\'Apakah anda yakin ingin hapus?\')id_perpustakaan=<?=$rows['id_perpustakaan']?>"> hapus</a>
                   <?php
-                      };
-                    ?>
+                    $query  = "SELECT * FROM tb_perpustakaan";
+                    $run    = mysqli_query($con,$query);
+                  ?>
+                  <a href="download.php?file=<?=$data['file'] ?>"><i class="fa fa-download" aria-hidden="true"></i></a>
+                  <a href="detail.php?kode_buku=<?=$data['kode_buku']?>"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <a href="hapus.php?id_perpustakaan=<?=$data['id_perpustakaan'];?>"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
             <?php
