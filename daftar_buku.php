@@ -149,8 +149,8 @@
                     $run    = mysqli_query($con,$query);
                   ?>
                   <a href="download.php?file=<?=$data['file'] ?>"><i class="fa fa-download" aria-hidden="true"></i></a>
-                  <a href="detail.php?kode_buku=<?=$data['kode_buku']?>"> <i class="fa fa-eye" aria-hidden="true"></i></a>
-                  <a href="hapus.php?id_perpustakaan=<?=$data['id_perpustakaan'];?>"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                  <a href="detail.php?kode_buku=<?=$data['kode_buku']?>"> <i class="fas fa-eye"></i></a>
+                  <a href="hapus.php?id_perpustakaan=<?=$data['id_perpustakaan'];?>"> <i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
             <?php

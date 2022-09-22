@@ -133,13 +133,30 @@ if(isset($_POST["submit"])){
                                 <div class="col-12"></div>
                             </div>
                         </div>
+                        <?php
+                            $q          = "SELECT max(kode_buku) AS maxKode FROM tb_perpustakaan";
+                            $hasil      = mysqli_query($con, $q);
+                            $data       = mysqli_fetch_array($hasil);
+                            $kodeBuku   = $data['maxKode'];
+
+                            // ambil angka/bilangan
+                            $noUrut     = (int) substr($kodeBuku, 2, 3);
+
+                            // bilangan ini di tambah satu
+                            $noUrut++;
+
+                            // membentuk kode baru
+                            $char       = "B-";
+                            $kode       = $char . sprintf("%03s", $noUrut);
+                            // echo $kode;
+                        ?>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <b>Kode Buku:</b>
-                            <input type="text" name="kode_buku" value="" placeholder=""><br /><br />
+                            <input type="text" name="kode_buku" value="<?php echo $kode ?>" class="form-control" readonly><br /><br />
                             <b>Judul Buku:</b>
-                            <input type="text" name="nama_buku" value="" placeholder=""><br /><br />
+                            <input type="text" name="nama_buku" value="" class="form-control" require><br /><br />
                             <b>Keterangan:</b>
-                            <input type="text" name="keterangan" value="" placeholder=""><br /><br />
+                            <input type="text" name="keterangan" value="" class="form-control"><br /><br />
                             <b>Upload File :</b>
                             <input type="file" name="namaFile" accept="application/pdf">
                             <button type="submit" name="proses" value="upload">Upload File</button>

@@ -19,10 +19,8 @@
     }
 
     //query
-    $query  = "SELECT * FROM tb_perpustakaan WHERE id_perpustakaan='$id_perpustakaan'";
+    $query  = "DELETE FROM tb_perpustakaan WHERE id_perpustakaan='$id_perpustakaan'";
     //hasil
     $hasil  = $con->query($query);
-
-    header("location:daftar_buku.php");
 
 ?>
