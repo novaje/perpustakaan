@@ -1,3 +1,13 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Perpustakaan</title>
+  <link rel="shortcut icon" href="logo_rs.png" />
+  <a href="daftar_buku.php"> <input type="button" class="btn btn-primary btn-sm" value='Kembali'></a>
+  </head>
+</html>
+
 <?php
     //ambil id
     $kode_buku = $_GET['kode_buku'];
@@ -28,9 +38,12 @@
 ?>
 
                 <!-- <div class="col-12"> -->
-                  <div class="card-body" col="10">
+                  <!-- <div class="card-body" col="10">
                 <table border = "1" id="daftarbuku" class="table table-bordered table-hover">
                   <thead>
+                    <tr> -->
+                      <h2><u>DETAIL BUKU</u></h2>
+                      <table border="0" cellpadding="4">
                     <tr>
                       <th><center>KODE BUKU</center></th>
                       <th><center>JUDUL</center></th>
