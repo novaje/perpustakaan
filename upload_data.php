@@ -14,6 +14,7 @@ if(isset($_POST["submit"])){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Perpustakaan</title>
+        <link rel="shortcut icon" href="logo_rs.png" />
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
@@ -48,11 +49,8 @@ if(isset($_POST["submit"])){
                     <aside class="main-sidebar sidebar-dark-primary elevation-4">
                         <!-- Brand Logo -->
                         <a href="index.php" class="brand-link">
-                            <img
-                                src="dist/img/AdminLTELogo.png"
-                                alt="AdminLTE Logo"
-                                class="brand-image img-circle elevation-3"
-                                style="opacity: .8">
+                        <img src="logo_rs.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                        style="opacity: .8">
                             <span class="brand-text font-weight-light">PERPUSTAKAAN</span>
                         </a>
 
@@ -96,7 +94,7 @@ if(isset($_POST["submit"])){
                                         </li>
                                         <li class="nav-item">
                                             <a href="upload_data.php" class="nav-link">
-                                                <i class="nav-icon fas fa-edit"></i>
+                                            <i class="fa fa-upload" aria-hidden="true"></i>
                                                 <p>
                                                     UPLOAD DATA
                                                 </p>
@@ -134,20 +132,22 @@ if(isset($_POST["submit"])){
                             </div>
                         </div>
                         <?php
-                            $q          = "SELECT max(kode_buku) AS maxKode FROM tb_perpustakaan";
-                            $hasil      = mysqli_query($con, $q);
-                            $data       = mysqli_fetch_array($hasil);
+                            $q          = mysqli_query($con, "SELECT max(kode_buku) AS maxKode FROM tb_perpustakaan");
+                            $data       = mysqli_fetch_array($q);
+
                             $kodeBuku   = $data['maxKode'];
 
                             // ambil angka/bilangan
-                            $noUrut     = (int) substr($kodeBuku, 2, 3);
+                            $noUrut     = (int) substr($kodeBuku, 3, 3);
 
                             // bilangan ini di tambah satu
                             $noUrut++;
 
+                            $huruf  = "B-";
+                            $kode   = $huruf . sprintf("%03s", $noUrut);
                             // membentuk kode baru
-                            $char       = "B-";
-                            $kode       = $char . sprintf("%03s", $noUrut);
+                            // $char       = "B-";
+                            // $kode       = $char . sprintf("%03s", $noUrut);
                             // echo $kode;
                         ?>
                         <form action="" method="POST" enctype="multipart/form-data">

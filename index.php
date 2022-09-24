@@ -114,7 +114,7 @@
           </li>
           <li class="nav-item">
             <a href="upload_data.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+            <i class="fa fa-upload" aria-hidden="true"></i>
               <p>
                 UPLOAD DATA
               </p>
