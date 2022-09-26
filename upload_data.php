@@ -162,7 +162,7 @@ if(isset($_POST["submit"])){
                             <button type="submit" name="proses" value="upload">Upload File</button>
                         </form>
                         <?php
-                            $con = mysqli_connect("localhost","root","","db_perpustakaan");
+                            include 'koneksi/connection.php';
 
                             if(isset($_POST['proses'])) {
 
